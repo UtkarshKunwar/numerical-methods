@@ -24,7 +24,7 @@ double* RK3(double (*f)(double), double xi, double yi, double xf, int n);
 double* adams_bashforth(double (*f)(double), double xi, double yi, double xf, double h);
 double* adams_bashforth(double (*f)(double), double xi, double yi, double xf, int n);
 
-// Adam's-Bashforth
+// Milne-Simpson's
 double* milne_simpsons(double (*f)(double), double xi, double yi, double xf, double h);
 double* milne_simpsons(double (*f)(double), double xi, double yi, double xf, int n);
 

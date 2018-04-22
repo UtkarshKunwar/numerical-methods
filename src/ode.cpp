@@ -1,5 +1,4 @@
 #include "ode.hpp"
-#include <iostream>
 
 int get_number_of_steps(double xi, double xf, double h)
 {
@@ -111,7 +110,7 @@ double* adams_bashforth(double (*f)(double), double xi, double yi, double xf, in
 	y[0] = yi;
 	double* temp = euler(*f, xi, yi, xi + h, 1);
 	y[1] = temp[1];
-	delete temp;
+	delete [] temp;
 
 	for(int i = 1; i < n; i++) {
 		// y_i+1 = y_i + h/2 * (3f_i - f_i-1)
@@ -139,7 +138,7 @@ double* milne_simpsons(double (*f)(double), double xi, double yi, double xf, int
 	y[2] = temp[2];
 	y[3] = temp[3];
 
-	delete temp;
+	delete [] temp;
 
 	for(int i = 3; i < n; i++) {
 		// Predictor Equation

@@ -19,6 +19,6 @@ int main()
 		std::cout << y[i] << std::endl;
 	}
 
-	delete y;
+	delete [] y;
 	return 0;
 }
