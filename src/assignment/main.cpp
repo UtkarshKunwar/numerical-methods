@@ -40,6 +40,11 @@ int main(int argc, char* argv[])
 
 	double** A_inverse = matrixInverse(A, n);
 
+	if(A_inverse == NULL) {
+		std::cout << "Inverse for the matrix does not exist." << std::endl;
+		return 1;
+	}
+
 	// Opening file for writing.
 	std::ofstream fout;
 	fout.open("results.txt");

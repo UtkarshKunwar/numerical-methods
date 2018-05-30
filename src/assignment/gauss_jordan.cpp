@@ -18,11 +18,11 @@ int pivot_and_swap(double** A, double** I, int n)
 	for(int j = 0; j < n; j++) {
 		int current_index = j;
 		int max_row_index = j;
-		double max_val = A[j][j];
+		double max_val = abs(A[j][j]);
 
 		// Find new max element in current column.
 		for(int i = j; i < n; i++) {
-			if(A[i][j] > max_val) {
+			if(abs(A[i][j]) > max_val) {
 				max_val = A[i][j];
 				max_row_index = i;
 			}
@@ -49,6 +49,9 @@ int pivot_and_swap(double** A, double** I, int n)
 int elimination(double** A, double** I, int n)
 {
 	for(int j = 0; j < n; j++) {
+		if(abs(A[j][j]) < 1e-9) {
+			return 1;
+		}
 		for(int i = 0; i < n; i++) {
 			if(i != j) {
 				double factor = A[i][j] / A[j][j];
@@ -81,7 +84,8 @@ double** matrixInverse(double** A, int n)
 {
 	double** I = eye(n);
 	pivot_and_swap(A, I, n);
-	elimination(A, I, n);
+	if(elimination(A, I, n) == 1)
+		return NULL;
 	scale(A, I, n);
 
 	return I;
